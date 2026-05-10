@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>טופס הזמנה</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap');
+
+  :root {
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --primary: #1a1a2e;
+    --accent: #e63946;
+    --accent2: #457b9d;
+    --text: #1a1a2e;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
+    --success: #2d6a4f;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  header {
+    background: var(--primary);
+    color: white;
+    padding: 20px 24px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .cart-badge {
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
+    background: var(--accent);
+    color: white;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+
+  .cart-badge:active { transform: translateY(-50%) scale(0.95); }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 100px; }
+
+  /* Customer info */
+  .customer-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .customer-card h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    direction: rtl;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fafafa;
+  }
+
+  input[type="text"]:focus {
+    border-color: var(--accent2);
+    background: white;
+  }
+
+  /* Search */
+  .search-bar {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-bar input {
+    flex: 1;
+    border: none;
+    background: none;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    direction: rtl;
+    outline: none;
+  }
+
+  .search-icon { color: var(--text-light); font-size: 1.1rem; }
+
+  /* Categories */
+  .categories {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    scrollbar-width: none;
+    flex-direction: row-reverse;
+  }
+
+  .categories::-webkit-scrollbar { display: none; }
+
+  .cat-btn {
+    white-space: nowrap;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-light);
+  }
+
+  .cat-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  /* Products */
+  .products-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .product-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .product-card.in-cart {
+    border-color: var(--accent2);
+    box-shadow: 0 0 0 1px var(--accent2);
+  }
+
+  .product-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    flex: 1;
+  }
+
+  .product-cat {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 2px;
+  }
+
+  .qty-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .qty-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    color: var(--text);
+  }
+
+  .qty-btn:active { transform: scale(0.9); }
+  .qty-btn.plus { background: var(--primary); color: white; border-color: var(--primary); }
+  .qty-btn.plus:disabled { background: var(--border); border-color: var(--border); cursor: not-allowed; }
+
+  .qty-display {
+    font-weight: 700;
+    font-size: 1rem;
+    min-width: 36px;
+    width: 36px;
+    text-align: center;
+  }
+
+  input.qty-display {
+    border: none;
+    background: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0;
+    color: var(--text);
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  input.qty-display::-webkit-outer-spin-button,
+  input.qty-display::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input.qty-display:focus {
+    outline: 1px solid var(--accent2);
+    border-radius: 4px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+    font-size: 0.95rem;
+  }
+
+  /* Loading */
+  .loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Cart drawer */
+  .cart-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 200;
+  }
+
+  .cart-overlay.open { display: block; }
+
+  .cart-drawer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 24px 20px 40px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 201;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .cart-overlay.open .cart-drawer { transform: translateY(0); }
+
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .cart-header h2 { font-size: 1.2rem; font-weight: 800; }
+
+  .close-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+
+  .cart-item-name { font-weight: 600; }
+  .cart-item-qty { color: var(--text-light); font-size: 0.9rem; margin-top: 2px; }
+
+  .cart-empty { text-align: center; color: var(--text-light); padding: 30px 0; }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .submit-btn:hover { opacity: 0.9; }
+  .submit-btn:active { transform: scale(0.98); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Success screen */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .success-screen.show { display: block; }
+  .main-content.hide { display: none; }
+
+  .success-icon {
+    width: 72px;
+    height: 72px;
+    background: var(--success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+  }
+
+  .success-screen h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+  .success-screen p { color: var(--text-light); font-size: 1rem; line-height: 1.6; }
+
+  .error-msg {
+    background: #fee2e2;
+    color: #991b1b;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    margin-top: 12px;
+    display: none;
+  }
+
+  .section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>טופס הזמנה</h1>
+  <div class="cart-badge" onclick="openCart()" id="cartBadge" style="display:none">
+    🛒 <span id="cartCount">0</span> פריטים
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Success -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <h2>ההזמנה נשלחה!</h2>
+    <p>תודה, ההזמנה שלך התקבלה בהצלחה.<br>נחזור אליך בהקדם.</p>
+  </div>
+
+  <div class="main-content" id="mainContent">
+
+    <!-- Customer info -->
+    <div class="customer-card">
+      <h2>פרטי הזמנה</h2>
+      <div class="input-group">
+        <input type="text" id="customerName" placeholder="שם מלא *" required>
+        <input type="text" id="customerDivision" placeholder="חטיבה *" required>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading" id="loadingState">
+      <div class="spinner"></div>
+      <div>טוען מוצרים...</div>
+    </div>
+
+    <!-- Products section -->
+    <div id="productsSection" style="display:none">
+      <div class="section-title">בחר מוצרים</div>
+
+      <!-- Search -->
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="חיפוש מוצר..." oninput="renderProducts()">
+      </div>
+
+      <!-- Categories -->
+      <div class="categories" id="categoriesBar"></div>
+
+      <!-- Products list -->
+      <div class="products-list" id="productsList"></div>
+    </div>
+
+    <div id="errorState" style="display:none; text-align:center; padding:30px; color:#991b1b;">
+      שגיאה בטעינת המוצרים. אנא רענן את הדף.
+    </div>
+
+  </div>
+</div>
+
+<!-- Cart drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="handleOverlayClick(event)">
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h2>סל הזמנה</h2>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cartItems"></div>
+    <div id="cartError" class="error-msg"></div>
+    <button class="submit-btn" id="submitBtn" onclick="submitOrder()">שלח הזמנה</button>
+  </div>
+</div>
+
+<script>
+  // =============================================
+  // הגדרות - שנה את הערכים הבאים
+  // =============================================
+ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6Vg_pVmVu44G8X7RB-hnjYMDkj2bvAiEvxomuPDPRe6PVM7QFXYU5flXgNu26ZHYd/exec';
+  // =============================================
+
+  let products = [];
+  let cart = {}; // { productName: { qty, maxQty } }
+  let activeCategory = 'הכל';
+  let categories = [];
+
+  async function loadProducts() {
+    try {
+      const res = await fetch(`${SCRIPT_URL}?action=getProducts`);
+      const data = await res.json();
+      products = data;
+      categories = ['הכל', ...new Set(data.map(p => p.category).filter(Boolean))];
+      renderCategories();
+      renderProducts();
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('productsSection').style.display = 'block';
+    } catch (e) {
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('errorState').style.display = 'block';
+    }
+  }
+
+  function renderCategories() {
+    const bar = document.getElementById('categoriesBar');
+    bar.innerHTML = categories.map(cat => `
+      <button class="cat-btn ${cat === activeCategory ? 'active' : ''}"
+        onclick="setCategory('${cat}')">${cat}</button>
+    `).join('');
+  }
+
+  function setCategory(cat) {
+    activeCategory = cat;
+    renderCategories();
+    renderProducts();
+  }
+
+  function renderProducts() {
+    const search = document.getElementById('searchInput').value.trim().toLowerCase();
+    const filtered = products.filter(p => {
+      const matchCat = activeCategory === 'הכל' || p.category === activeCategory;
+      const matchSearch = !search || p.name.toLowerCase().includes(search);
+      return matchCat && matchSearch;
+    });
+
+    const list = document.getElementById('productsList');
+    if (filtered.length === 0) {
+      list.innerHTML = '<div class="empty-state">לא נמצאו מוצרים</div>';
+      return;
+    }
+
+    list.innerHTML = filtered.map(p => {
+      const inCart = cart[p.name];
+      const qty = inCart ? inCart.qty : 0;
+      const maxQty = p.stock;
+      const isMax = qty >= maxQty;
+      const isInCart = qty > 0;
+      return `
+        <div class="product-card ${isInCart ? 'in-cart' : ''}" id="card-${sanitizeId(p.name)}">
+          <div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-cat">${p.category || ''}</div>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn minus" onclick="changeQty('${p.name}', -1, ${maxQty})" ${qty === 0 ? 'disabled' : ''}>−</button>
+            <input type="number" class="qty-display" value="${qty}" min="0" max="${maxQty}"
+              onchange="setQty('${p.name}', this.value, ${maxQty})"
+              onclick="this.select()">
+            <button class="qty-btn plus" onclick="changeQty('${p.name}', 1, ${maxQty})" ${isMax ? 'disabled' : ''}>+</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function sanitizeId(name) {
+    return name.replace(/[^a-zA-Z0-9\u0590-\u05FF]/g, '_');
+  }
+
+  function setQty(name, value, maxQty) {
+    let qty = parseInt(value, 10);
+    if (isNaN(qty) || qty < 0) qty = 0;
+    if (qty > maxQty) qty = maxQty;
+    if (qty === 0) {
+      delete cart[name];
+    } else {
+      cart[name] = { qty, maxQty };
+    }
+    updateCartBadge();
+    renderProducts();
+  }
+
+  function changeQty(name, delta, maxQty) {
+    if (!cart[name]) cart[name] = { qty: 0, maxQty };
+    const newQty = Math.max(0, Math.min(maxQty, cart[name].qty + delta));
+    cart[name].qty = newQty;
+    if (newQty === 0) delete cart[name];
+    updateCartBadge();
+    renderProducts();
+  }
+
+  function updateCartBadge() {
+    const total = Object.values(cart).reduce((s, v) => s + v.qty, 0);
+    const badge = document.getElementById('cartBadge');
+    document.getElementById('cartCount').textContent = Object.keys(cart).length;
+    badge.style.display = total > 0 ? 'block' : 'none';
+  }
+
+  function openCart() {
+    renderCartItems();
+    document.getElementById('cartOverlay').classList.add('open');
+  }
+
+  function closeCart() {
+    document.getElementById('cartOverlay').classList.remove('open');
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('cartOverlay')) closeCart();
+  }
+
+  function renderCartItems() {
+    const container = document.getElementById('cartItems');
+    const items = Object.entries(cart);
+    if (items.length === 0) {
+      container.innerHTML = '<div class="cart-empty">הסל ריק</div>';
+      return;
+    }
+    container.innerHTML = items.map(([name, v]) => `
+      <div class="cart-item">
+        <div>
+          <div class="cart-item-name">${name}</div>
+          <div class="cart-item-qty">כמות: ${v.qty}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function submitOrder() {
+    const name = document.getElementById('customerName').value.trim();
+    const division = document.getElementById('customerDivision').value.trim();
+    const errorEl = document.getElementById('cartError');
+
+    if (!name || !division) {
+      errorEl.textContent = 'אנא מלא שם וחטיבה לפני שליחה';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    if (Object.keys(cart).length === 0) {
+      errorEl.textContent = 'אנא בחר לפחות מוצר אחד';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    errorEl.style.display = 'none';
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'שולח...';
+
+    const orderItems = Object.entries(cart).map(([name, v]) => ({
+      name,
+      qty: v.qty
+    }));
+
+    try {
+  await fetch(SCRIPT_URL, {
+  method: 'POST',
+  mode: 'no-cors',
+  body: JSON.stringify({ name, division, items: orderItems }),
+   });
+
+      closeCart();
+      document.getElementById('mainContent').classList.add('hide');
+      document.getElementById('successScreen').classList.add('show');
+    } catch (e) {
+      errorEl.textContent = 'שגיאה בשליחה. נסה שוב.';
+      errorEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'שלח הזמנה';
+    }
+  }
+
+  loadProducts();
+</script>
+</body>
+</html>
