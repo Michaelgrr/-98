@@ -54,9 +54,7 @@
     box-shadow: 0 2px 20px rgba(0,0,0,0.2);
   }
 
-  header.zuk-mode {
-    background: var(--zuk-primary);
-  }
+  header.zuk-mode { background: var(--zuk-primary); }
 
   .header-inner {
     display: flex;
@@ -111,9 +109,7 @@
   .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 100px; }
 
   /* ── HOME SCREEN ── */
-  .home-screen {
-    padding-top: 30px;
-  }
+  .home-screen { padding-top: 30px; }
 
   .home-welcome {
     text-align: center;
@@ -171,7 +167,6 @@
   }
 
   .warehouse-card:active { transform: scale(0.97); }
-
   .warehouse-card.main:hover { border-color: var(--accent2); }
   .warehouse-card.zuk:hover  { border-color: var(--zuk-accent); }
 
@@ -189,30 +184,14 @@
   .warehouse-card.main .wh-icon { background: #1c1c2e12; }
   .warehouse-card.zuk .wh-icon  { background: #3a9e6f15; }
 
-  .wh-title {
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .wh-sub {
-    font-size: 0.78rem;
-    color: var(--text-light);
-    font-weight: 400;
-  }
-
-  .wh-arrow {
-    margin-top: 14px;
-    font-size: 1.1rem;
-    opacity: 0.3;
-  }
+  .wh-title { font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+  .wh-sub   { font-size: 0.78rem; color: var(--text-light); font-weight: 400; }
+  .wh-arrow { margin-top: 14px; font-size: 1.1rem; opacity: 0.3; }
 
   /* ── FORM SCREENS ── */
   .form-screen { display: none; }
   .form-screen.active { display: block; }
 
-  /* Customer info */
   .customer-card {
     background: var(--surface);
     border-radius: var(--radius);
@@ -231,11 +210,7 @@
     letter-spacing: 1px;
   }
 
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .input-group { display: flex; flex-direction: column; gap: 10px; }
 
   input[type="text"] {
     width: 100%;
@@ -262,7 +237,6 @@
     box-shadow: 0 0 0 3px rgba(58,158,111,0.1);
   }
 
-  /* Search */
   .search-bar {
     background: var(--surface);
     border-radius: var(--radius);
@@ -287,7 +261,6 @@
 
   .search-icon { color: var(--text-light); font-size: 1.1rem; }
 
-  /* Categories */
   .categories {
     display: flex;
     gap: 8px;
@@ -314,18 +287,9 @@
     color: var(--text-light);
   }
 
-  .cat-btn.active {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-  }
+  .cat-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+  .form-screen.zuk-mode .cat-btn.active { background: var(--zuk-primary); border-color: var(--zuk-primary); }
 
-  .form-screen.zuk-mode .cat-btn.active {
-    background: var(--zuk-primary);
-    border-color: var(--zuk-primary);
-  }
-
-  /* Products */
   .products-list { display: flex; flex-direction: column; gap: 9px; }
 
   .product-card {
@@ -351,25 +315,10 @@
     box-shadow: 0 0 0 1.5px var(--zuk-accent), var(--shadow);
   }
 
-  .product-name {
-    font-weight: 600;
-    font-size: 0.92rem;
-    flex: 1;
-    line-height: 1.3;
-  }
+  .product-name { font-weight: 600; font-size: 0.92rem; flex: 1; line-height: 1.3; }
+  .product-cat  { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
 
-  .product-cat {
-    font-size: 0.75rem;
-    color: var(--text-light);
-    margin-top: 2px;
-  }
-
-  .qty-control {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    flex-shrink: 0;
-  }
+  .qty-control { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
 
   .qty-btn {
     width: 32px;
@@ -391,30 +340,11 @@
   .qty-btn:active { transform: scale(0.88); }
   .qty-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-  .qty-btn.plus {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-  }
+  .qty-btn.plus { background: var(--primary); color: white; border-color: var(--primary); }
+  .form-screen.zuk-mode .qty-btn.plus { background: var(--zuk-primary); border-color: var(--zuk-primary); }
+  .qty-btn.plus:disabled { background: var(--border); border-color: var(--border); cursor: not-allowed; }
 
-  .form-screen.zuk-mode .qty-btn.plus {
-    background: var(--zuk-primary);
-    border-color: var(--zuk-primary);
-  }
-
-  .qty-btn.plus:disabled {
-    background: var(--border);
-    border-color: var(--border);
-    cursor: not-allowed;
-  }
-
-  .qty-display {
-    font-weight: 700;
-    font-size: 0.97rem;
-    min-width: 34px;
-    width: 34px;
-    text-align: center;
-  }
+  .qty-display { font-weight: 700; font-size: 0.97rem; min-width: 34px; width: 34px; text-align: center; }
 
   input.qty-display {
     border: none;
@@ -432,19 +362,9 @@
   input.qty-display::-webkit-inner-spin-button { -webkit-appearance: none; }
   input.qty-display:focus { outline: 1px solid var(--accent2); border-radius: 4px; }
 
-  .empty-state {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text-light);
-    font-size: 0.95rem;
-  }
+  .empty-state { text-align: center; padding: 40px 20px; color: var(--text-light); font-size: 0.95rem; }
 
-  /* Loading */
-  .loading {
-    text-align: center;
-    padding: 40px;
-    color: var(--text-light);
-  }
+  .loading { text-align: center; padding: 40px; color: var(--text-light); }
 
   .spinner {
     width: 34px;
@@ -460,7 +380,7 @@
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* Cart drawer */
+  /* ── CART DRAWER ── */
   .cart-overlay {
     display: none;
     position: fixed;
@@ -524,17 +444,87 @@
 
   .close-btn:hover { background: var(--border); }
 
+  /* ── CART ITEM (editable) ── */
   .cart-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 11px 0;
+    gap: 10px;
+    padding: 12px 0;
     border-bottom: 1px solid var(--border);
-    font-size: 0.92rem;
   }
 
-  .cart-item-name { font-weight: 600; }
-  .cart-item-qty { color: var(--text-light); font-size: 0.85rem; margin-top: 2px; }
+  .cart-item-info { flex: 1; min-width: 0; }
+  .cart-item-name { font-weight: 600; font-size: 0.92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cart-item-sub  { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
+
+  .cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .cart-qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    color: var(--text);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .cart-qty-btn:active { transform: scale(0.88); }
+  .cart-qty-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .cart-qty-btn.plus {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  .cart-qty-btn.plus.zuk-btn {
+    background: var(--zuk-primary);
+    border-color: var(--zuk-primary);
+  }
+
+  .cart-qty-btn.plus:disabled { background: var(--border); border-color: var(--border); }
+
+  .cart-qty-num {
+    font-weight: 700;
+    font-size: 0.95rem;
+    min-width: 28px;
+    text-align: center;
+  }
+
+  .cart-trash-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    background: #fee2e2;
+    color: #dc2626;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    margin-right: 2px;
+    flex-shrink: 0;
+  }
+
+  .cart-trash-btn:hover  { background: #fca5a5; }
+  .cart-trash-btn:active { transform: scale(0.88); }
+
   .cart-empty { text-align: center; color: var(--text-light); padding: 30px 0; }
 
   .submit-btn {
@@ -558,13 +548,8 @@
   .submit-btn:active { transform: scale(0.98); }
   .submit-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
-  /* Success screen */
-  .success-screen {
-    display: none;
-    text-align: center;
-    padding: 70px 20px 40px;
-  }
-
+  /* ── SUCCESS ── */
+  .success-screen { display: none; text-align: center; padding: 70px 20px 40px; }
   .success-screen.show { display: block; }
   .form-screen.hide { display: none !important; }
   .home-screen.hide { display: none !important; }
@@ -622,7 +607,6 @@
     margin-top: 2px;
   }
 
-  /* zuk badge color */
   header.zuk-mode .cart-badge { background: var(--zuk-accent); }
 </style>
 </head>
@@ -640,7 +624,7 @@
 
 <div class="container">
 
-  <!-- ── HOME SCREEN ── -->
+  <!-- HOME -->
   <div class="home-screen" id="homeScreen">
     <div class="home-welcome">
       <h2>מה תרצה להזמין?</h2>
@@ -662,7 +646,7 @@
     </div>
   </div>
 
-  <!-- ── SUCCESS SCREEN ── -->
+  <!-- SUCCESS -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon main" id="successIcon">✓</div>
     <h2>ההזמנה נשלחה!</h2>
@@ -670,7 +654,7 @@
     <button class="new-order-btn" onclick="resetAll()">הזמנה חדשה</button>
   </div>
 
-  <!-- ── MAIN WAREHOUSE FORM ── -->
+  <!-- MAIN FORM -->
   <div class="form-screen" id="mainForm">
     <div class="customer-card">
       <h2>פרטי הזמנה</h2>
@@ -679,12 +663,10 @@
         <input type="text" id="mainDivision" placeholder="חטיבה *" required>
       </div>
     </div>
-
     <div class="loading" id="mainLoading">
       <div class="spinner"></div>
       <div>טוען מוצרים...</div>
     </div>
-
     <div id="mainProductsSection" style="display:none">
       <div class="section-title">בחר מוצרים</div>
       <div class="search-bar">
@@ -694,13 +676,12 @@
       <div class="categories" id="mainCategories"></div>
       <div class="products-list" id="mainProductsList"></div>
     </div>
-
     <div id="mainError" style="display:none; text-align:center; padding:30px; color:#991b1b;">
       שגיאה בטעינת המוצרים. אנא רענן את הדף.
     </div>
   </div>
 
-  <!-- ── ZUK WAREHOUSE FORM ── -->
+  <!-- ZUK FORM -->
   <div class="form-screen zuk-mode" id="zukForm">
     <div class="customer-card">
       <h2>פרטי הזמנה — ציוד זו"ק</h2>
@@ -709,12 +690,10 @@
         <input type="text" id="zukDivision" placeholder="חטיבה *" required>
       </div>
     </div>
-
     <div class="loading" id="zukLoading">
       <div class="spinner"></div>
       <div>טוען מוצרים...</div>
     </div>
-
     <div id="zukProductsSection" style="display:none">
       <div class="section-title">בחר ציוד</div>
       <div class="search-bar">
@@ -724,7 +703,6 @@
       <div class="categories" id="zukCategories"></div>
       <div class="products-list" id="zukProductsList"></div>
     </div>
-
     <div id="zukError" style="display:none; text-align:center; padding:30px; color:#991b1b;">
       שגיאה בטעינת הפריטים. אנא רענן את הדף.
     </div>
@@ -732,7 +710,7 @@
 
 </div>
 
-<!-- ── CART DRAWER (shared) ── -->
+<!-- CART DRAWER -->
 <div class="cart-overlay" id="cartOverlay" onclick="handleOverlayClick(event)">
   <div class="cart-drawer">
     <div class="cart-handle"></div>
@@ -747,13 +725,11 @@
 </div>
 
 <script>
-  // =============================================
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbTrrXIijHB5eJgf-Rq2FKzQ3LQ3O5B5y2AJ9a69yXgqJtwQt5QMZ1w6RzibBdfN3G/exec';
   const ZUK_SHEET  = 'מחסן זוק';
-  // =============================================
 
   let state = {
-    mode: null,          // 'main' | 'zuk'
+    mode: null,
     products: { main: [], zuk: [] },
     loaded:   { main: false, zuk: false },
     cart:     { main: {}, zuk: {} },
@@ -792,10 +768,7 @@
     }
 
     updateCartBadge();
-
-    if (!state.loaded[mode]) {
-      loadProducts(mode);
-    }
+    if (!state.loaded[mode]) loadProducts(mode);
   }
 
   function resetAll() {
@@ -818,9 +791,9 @@
   // ── DATA ─────────────────────────────────────
 
   async function loadProducts(mode) {
-    const loadingId   = mode === 'main' ? 'mainLoading'   : 'zukLoading';
-    const sectionId   = mode === 'main' ? 'mainProductsSection' : 'zukProductsSection';
-    const errorId     = mode === 'main' ? 'mainError'     : 'zukError';
+    const loadingId = mode === 'main' ? 'mainLoading' : 'zukLoading';
+    const sectionId = mode === 'main' ? 'mainProductsSection' : 'zukProductsSection';
+    const errorId   = mode === 'main' ? 'mainError' : 'zukError';
 
     const url = mode === 'main'
       ? `${SCRIPT_URL}?action=getProducts`
@@ -832,23 +805,20 @@
       state.products[mode] = data;
       state.categories[mode] = ['הכל', ...new Set(data.map(p => p.category).filter(Boolean))];
       state.loaded[mode] = true;
-
       renderCategories(mode);
       renderProducts(mode);
-
-      document.getElementById(loadingId).style.display  = 'none';
-      document.getElementById(sectionId).style.display  = 'block';
+      document.getElementById(loadingId).style.display = 'none';
+      document.getElementById(sectionId).style.display = 'block';
     } catch (e) {
-      document.getElementById(loadingId).style.display  = 'none';
-      document.getElementById(errorId).style.display    = 'block';
+      document.getElementById(loadingId).style.display = 'none';
+      document.getElementById(errorId).style.display   = 'block';
     }
   }
 
   // ── RENDER ───────────────────────────────────
 
   function renderCategories(mode) {
-    const barId = mode === 'main' ? 'mainCategories' : 'zukCategories';
-    const bar   = document.getElementById(barId);
+    const bar = document.getElementById(mode === 'main' ? 'mainCategories' : 'zukCategories');
     bar.innerHTML = state.categories[mode].map(cat => `
       <button class="cat-btn ${cat === state.activeCategory[mode] ? 'active' : ''}"
         onclick="setCategory('${mode}','${cat.replace(/'/g,"\\'")}')">
@@ -866,8 +836,8 @@
   function renderProducts(mode) {
     const searchId = mode === 'main' ? 'mainSearch' : 'zukSearch';
     const listId   = mode === 'main' ? 'mainProductsList' : 'zukProductsList';
-
     const search   = document.getElementById(searchId).value.trim().toLowerCase();
+
     const filtered = state.products[mode].filter(p => {
       const matchCat    = state.activeCategory[mode] === 'הכל' || p.category === state.activeCategory[mode];
       const matchSearch = !search || p.name.toLowerCase().includes(search);
@@ -926,12 +896,37 @@
     renderProducts(mode);
   }
 
+  // שינוי כמות מתוך הסל
+  function cartChangeQty(name, delta) {
+    const m = state.mode;
+    const item = state.cart[m][name];
+    if (!item) return;
+    const newQty = Math.max(0, Math.min(item.maxQty, item.qty + delta));
+    if (newQty === 0) {
+      delete state.cart[m][name];
+    } else {
+      state.cart[m][name].qty = newQty;
+    }
+    updateCartBadge();
+    renderProducts(m);
+    renderCartItems(); // רענן את הסל
+  }
+
+  // הסרת פריט מהסל
+  function removeFromCart(name) {
+    const m = state.mode;
+    delete state.cart[m][name];
+    updateCartBadge();
+    renderProducts(m);
+    renderCartItems();
+  }
+
   function updateCartBadge() {
     const m = state.mode;
     if (!m) { document.getElementById('cartBadge').style.display = 'none'; return; }
-    const total  = Object.values(state.cart[m]).reduce((s, v) => s + v.qty, 0);
-    const count  = Object.keys(state.cart[m]).length;
-    const badge  = document.getElementById('cartBadge');
+    const total = Object.values(state.cart[m]).reduce((s, v) => s + v.qty, 0);
+    const count = Object.keys(state.cart[m]).length;
+    const badge = document.getElementById('cartBadge');
     document.getElementById('cartCount').textContent = count + ' פריטים';
     badge.style.display = total > 0 ? 'block' : 'none';
     badge.className     = 'cart-badge' + (m === 'zuk' ? ' zuk' : '');
@@ -955,18 +950,27 @@
   }
 
   function renderCartItems() {
-    const m   = state.mode;
+    const m         = state.mode;
     const container = document.getElementById('cartItems');
-    const items = Object.entries(state.cart[m]);
+    const items     = Object.entries(state.cart[m]);
+    const isZuk     = m === 'zuk';
+
     if (items.length === 0) {
       container.innerHTML = '<div class="cart-empty">הסל ריק</div>';
       return;
     }
+
     container.innerHTML = items.map(([name, v]) => `
       <div class="cart-item">
-        <div>
+        <div class="cart-item-info">
           <div class="cart-item-name">${name}</div>
-          <div class="cart-item-qty">כמות: ${v.qty}</div>
+          <div class="cart-item-sub">מלאי: ${v.maxQty}</div>
+        </div>
+        <div class="cart-item-controls">
+          <button class="cart-qty-btn minus" onclick="cartChangeQty('${esc(name)}',-1)" ${v.qty <= 1 ? 'disabled' : ''}>−</button>
+          <span class="cart-qty-num">${v.qty}</span>
+          <button class="cart-qty-btn plus ${isZuk ? 'zuk-btn' : ''}" onclick="cartChangeQty('${esc(name)}',1)" ${v.qty >= v.maxQty ? 'disabled' : ''}>+</button>
+          <button class="cart-trash-btn" onclick="removeFromCart('${esc(name)}')" title="הסר מהסל">🗑️</button>
         </div>
       </div>
     `).join('');
@@ -975,12 +979,12 @@
   // ── SUBMIT ───────────────────────────────────
 
   async function submitOrder() {
-    const m         = state.mode;
-    const nameId    = m === 'main' ? 'mainName'     : 'zukName';
-    const divId     = m === 'main' ? 'mainDivision' : 'zukDivision';
-    const name      = document.getElementById(nameId).value.trim();
-    const division  = document.getElementById(divId).value.trim();
-    const errorEl   = document.getElementById('cartError');
+    const m        = state.mode;
+    const nameId   = m === 'main' ? 'mainName'     : 'zukName';
+    const divId    = m === 'main' ? 'mainDivision' : 'zukDivision';
+    const name     = document.getElementById(nameId).value.trim();
+    const division = document.getElementById(divId).value.trim();
+    const errorEl  = document.getElementById('cartError');
 
     if (!name || !division) {
       errorEl.textContent = 'אנא מלא שם וחטיבה לפני שליחה';
@@ -996,7 +1000,7 @@
 
     errorEl.style.display = 'none';
     const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
+    btn.disabled    = true;
     btn.textContent = 'שולח...';
 
     const orderItems = Object.entries(state.cart[m]).map(([name, v]) => ({ name, qty: v.qty }));
@@ -1014,16 +1018,15 @@
       document.getElementById('homeScreen').classList.add('hide');
       document.getElementById('backBtn').classList.remove('visible');
 
-      const icon = document.getElementById('successIcon');
-      icon.className = 'success-icon ' + m;
-
+      document.getElementById('successIcon').className = 'success-icon ' + m;
       document.getElementById('successScreen').classList.add('show');
-      btn.disabled = false;
+
+      btn.disabled    = false;
       btn.textContent = 'שלח הזמנה';
     } catch (e) {
       errorEl.textContent = 'שגיאה בשליחה. נסה שוב.';
       errorEl.style.display = 'block';
-      btn.disabled = false;
+      btn.disabled    = false;
       btn.textContent = 'שלח הזמנה';
     }
   }
